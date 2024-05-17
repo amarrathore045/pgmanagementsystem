@@ -1,0 +1,4 @@
+com\pg\app\entity\Room.class
+com\pg\app\entity\Building.class
+com\pg\app\controller\Controller.class
+com\pg\app\PgRoomBookingAppApplication.class
