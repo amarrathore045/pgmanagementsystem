@@ -1,9 +1,11 @@
 package com.pg.app.services;
 
 import com.pg.app.entity.Building;
+import com.pg.app.exceptions.BuildingIdNotFoundException;
 import com.pg.app.repo.BuildingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class BuildingServicesImpl implements BuildingServices{
@@ -24,12 +26,16 @@ public class BuildingServicesImpl implements BuildingServices{
     }
 
     @Override
-    public Building getBuilding(int buildingId) {
-        return null;
+    public Optional<Building> getBuilding(int buildingId) throws BuildingIdNotFoundException {
+        Optional<Building> building;
+        building = Optional.ofNullable(buildingRepo.findById(buildingId)
+                .orElseThrow(() -> new BuildingIdNotFoundException("Id not found")));
+
+        return building;
     }
 
     @Override
     public void deleteBuilding(int buildingId) {
-
+        buildingRepo.deleteById(buildingId);
     }
 }
