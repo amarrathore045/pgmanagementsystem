@@ -3,3 +3,6 @@ spring:
     mongodb:
       uri: mongodb+srv://admin:admin@pgservicecluster.9sglrmh.mongodb.net/?retryWrites=true&w=majority&appName=PGServiceCluster
       database: buildings
+
+server:
+  port: 1111

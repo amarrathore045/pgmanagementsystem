@@ -4,10 +4,12 @@ import com.pg.app.entity.Building;
 import com.pg.app.exceptions.BuildingIdNotFoundException;
 import com.pg.app.repo.BuildingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class BuildingServicesImpl implements BuildingServices{
     @Autowired
     BuildingRepo buildingRepo;
@@ -26,7 +28,7 @@ public class BuildingServicesImpl implements BuildingServices{
     }
 
     @Override
-    public Optional<Building> getBuilding(int buildingId) throws BuildingIdNotFoundException {
+    public Optional<Building> getBuilding(String buildingId) throws BuildingIdNotFoundException {
         Optional<Building> building;
         building = Optional.ofNullable(buildingRepo.findById(buildingId)
                 .orElseThrow(() -> new BuildingIdNotFoundException("Id not found")));
@@ -35,7 +37,7 @@ public class BuildingServicesImpl implements BuildingServices{
     }
 
     @Override
-    public void deleteBuilding(int buildingId) {
+    public void deleteBuilding(String buildingId) {
         buildingRepo.deleteById(buildingId);
     }
 }
