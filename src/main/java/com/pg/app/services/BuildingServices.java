@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface BuildingServices {
     public Building saveBuilding(Building building);
-    public Building updateBuilding(Building building);
+    public Optional<Building> updateBuilding(Building building) throws BuildingIdNotFoundException;
     public Optional<Building> getBuilding(String buildingId) throws BuildingIdNotFoundException;
     public void deleteBuilding(String buildingId);
 }

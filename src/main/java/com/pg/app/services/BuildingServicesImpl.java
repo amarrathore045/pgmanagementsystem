@@ -23,13 +23,27 @@ public class BuildingServicesImpl implements BuildingServices{
     }
 
     @Override
-    public Building updateBuilding(Building building) {
-        return null;
+    public Optional<Building> updateBuilding(Building building) throws BuildingIdNotFoundException {
+        String buildingId = building.getBuildingID();
+        Optional<Building> buildingObj = Optional.ofNullable(buildingRepo.findById(buildingId)
+                .orElseThrow(() -> new BuildingIdNotFoundException("Id not found")));
+        Building updatedBuilding = new Building();
+        updatedBuilding.setBuildingID(building.getBuildingID());
+        updatedBuilding.setBuildingName(building.getBuildingName());
+        updatedBuilding.setAvailableRooms(building.getAvailableRooms());
+        updatedBuilding.setRoomType(building.getRoomType());
+        updatedBuilding.setBookedRooms(building.getBookedRooms());
+        updatedBuilding.setNumberOfFloors(building.getNumberOfFloors());
+        buildingRepo.save(updatedBuilding);
+
+        return Optional.of(updatedBuilding);
     }
 
     @Override
     public Optional<Building> getBuilding(String buildingId) throws BuildingIdNotFoundException {
         Optional<Building> building;
+        building = Optional.ofNullable(buildingRepo.findById(buildingId)
+                .orElseThrow(() -> new BuildingIdNotFoundException("Id not found")));Optional<Building> building;
         building = Optional.ofNullable(buildingRepo.findById(buildingId)
                 .orElseThrow(() -> new BuildingIdNotFoundException("Id not found")));
 
