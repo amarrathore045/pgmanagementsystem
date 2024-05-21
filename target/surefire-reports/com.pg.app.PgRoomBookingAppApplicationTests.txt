@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.pg.app.PgRoomBookingAppApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.307 s -- in com.pg.app.PgRoomBookingAppApplicationTests
